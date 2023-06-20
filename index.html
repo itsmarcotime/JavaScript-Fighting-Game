@@ -5,9 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Fighting</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas></canvas>
+    <div class="mainContainer">
+        <div class="childContainer">
+            <!-- player health -->
+            <div class="playerChild">
+                <div class="playerHealth"></div>
+                <div class="playerHealthBar" id="playerHealth"></div>
+            </div>
+
+            <!-- timer -->
+            <div class="timer"></div>
+
+            <!-- enemy health -->
+            <div class="enemyChild">
+                <div class="enemyHealth"></div>
+                <div class="enemyHealthBar" id="enemyHealth"></div>
+            </div>
+            
+        </div>
+        <canvas></canvas>
+    </div>
     <script src="scripts.js"></script>
 </body>
 </html>

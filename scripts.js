@@ -13,7 +13,7 @@ class Sprite {
     this.velocity = velocity;
     this.width = 50;
     this.height = 150;
-    this.lastKey 
+    this.lastKey;
     this.attackBox = {
       position: {
         x: this.position.x,
@@ -22,9 +22,10 @@ class Sprite {
       offset,
       width: 100,
       height: 50,
-    }
-    this.color = color
-    this.isAttacking 
+    };
+    this.color = color;
+    this.isAttacking;
+    this.health = 100;
   };
 
   draw() {
@@ -155,13 +156,15 @@ function animate() {
   if (
     collisionDetection({ rectangle1: player, rectangle2: enemy }) && player.isAttacking) {
     player.isAttacking = false;
-    console.log("player attack");
+    enemy.health -= 20;
+    document.querySelector('#enemyHealth').style.width = enemy.health + "%";
   }
 
   if (
     collisionDetection({ rectangle1: enemy, rectangle2: player }) && enemy.isAttacking) {
     enemy.isAttacking = false;
-    console.log("enemy attack");
+    player.health -= 20;
+    document.querySelector('#playerHealth').style.width = player.health + "%";
   }
 };
 animate();

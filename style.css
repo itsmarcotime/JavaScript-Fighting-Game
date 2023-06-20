@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+}
+.mainContainer {
+    position: relative;
+    display: inline-block;
+}
+.childContainer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+.playerChild {
+    position: relative;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.playerHealth {
+    background-color: yellow;
+    height: 30px;
+    width: 100%;
+}
+.playerHealthBar {
+    position: absolute;
+    background: blue;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+}
+.timer {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+}
+.enemyChild {
+    position: relative;
+    height: 30px;
+    width: 100%;
+}
+.enemyHealth {
+    background-color: yellow;
+    height: 30px;
+}
+.enemyHealthBar {
+    position: absolute;
+    background: blue;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
