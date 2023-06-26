@@ -1,20 +1,35 @@
 class Sprite {
-  constructor({ position, imageSrc, scale = 1 }) {
+  constructor({ position, imageSrc, scale = 1, maxFrame = 1 }) {
     this.position = position;
     this.width = 50;
     this.height = 150;
     this.image = new Image();
     this.image.src = imageSrc;
     this.scale = scale;
+    this.maxFrame = maxFrame;
+    this.currentFrame = 0;
+    this.framesElapsed = 0;
+    this.framesHold = 5;
   };
 
   draw() {
-    ctx.drawImage(this.image, this.position.x, this.position.y, this.image.width * this.scale, 
-        this.image.height * this.scale);
+    ctx.drawImage(this.image, this.currentFrame * (this.image.width / this.maxFrame), 0, 
+        this.image.width / this.maxFrame, this.image.height, this.position.x, this.position.y, 
+        (this.image.width / this.maxFrame) * this.scale, this.image.height * this.scale);
   };
 
   update() {
     this.draw();
+    this.framesElapsed++;
+
+    if (this.framesElapsed % this.framesHold === 0) {
+        if (this.currentFrame < this.maxFrame - 1) {
+            this.currentFrame++;
+        } else {
+            this.currentFrame = 0;
+        };
+    };
+    
   };
 };
 

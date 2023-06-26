@@ -21,7 +21,8 @@ const shop = new Sprite ({
     y: 130
   },
   imageSrc: './assets/images/shop.png',
-  scale: 2.75
+  scale: 2.75,
+  maxFrame: 6
 });
 
 const player = new Fighter({
