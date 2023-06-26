@@ -38,7 +38,13 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
-  color: "red",
+  imageSrc: './assets/images/player1/Idle.png',
+  maxFrame: 8,
+  scale: 2.5,
+  offset: {
+    x: 215,
+    y: 156
+  }
 });
 
 const enemy = new Fighter({
@@ -54,7 +60,7 @@ const enemy = new Fighter({
     x: -50,
     y: 0,
   },
-  color: "blue",
+  
 });
 
 
@@ -89,7 +95,7 @@ function animate() {
   background.update();
   shop.update();
   player.update();
-  enemy.update();
+  //enemy.update();
 
   player.velocity.x = 0;
   enemy.velocity.x = 0;
