@@ -82,8 +82,11 @@ class Fighter extends Sprite {
     this.attackBox.position.y = this.position.y;
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
+
+    // gravity function
     if (this.position.y + this.height + this.velocity.y >= canvas.height - 96) {
       this.velocity.y = 0;
+      this.position.y = 330;
     } else {
       this.velocity.y += gravity;
     }
@@ -98,26 +101,33 @@ class Fighter extends Sprite {
 
   switchSprite(sprite) {
     switch (sprite) {
-      case 'idle':
+      case "idle":
         if (this.image !== this.sprites.idle.image) {
           this.image = this.sprites.idle.image;
           this.maxFrame = this.sprites.idle.maxFrame;
           this.currentFrame = 0;
-        };
+        }
         break;
-      case 'run':
+      case "run":
         if (this.image !== this.sprites.run.image) {
           this.image = this.sprites.run.image;
           this.maxFrame = this.sprites.run.maxFrame;
           this.currentFrame = 0;
-        };
+        }
         break;
-      case 'jump':
+      case "jump":
         if (this.image !== this.sprites.jump.image) {
           this.image = this.sprites.jump.image;
           this.maxFrame = this.sprites.jump.maxFrame;
           this.currentFrame = 0;
-        };
+        }
+        break;
+      case "fall":
+        if (this.image !== this.sprites.fall.image) {
+          this.image = this.sprites.fall.image;
+          this.maxFrame = this.sprites.fall.maxFrame;
+          this.currentFrame = 0;
+        }
         break;
     }
   };
