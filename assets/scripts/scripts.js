@@ -66,7 +66,6 @@ const player = new Fighter({
       imageSrc: './assets/images/player1/Attack1.png',
       maxFrame: 6
     },
-
   }
 });
 
@@ -83,6 +82,35 @@ const enemy = new Fighter({
     x: -50,
     y: 0,
   },
+  imageSrc: './assets/images/player2/Idle.png',
+  maxFrame: 4,
+  scale: 2.5,
+  offset: {
+    x: 215,
+    y: 169
+  },
+  sprites: {
+    idle: {
+      imageSrc: './assets/images/player2/Idle.png',
+      maxFrame: 4
+    },
+    run: {
+      imageSrc: './assets/images/player2/Run.png',
+      maxFrame: 8
+    },
+    jump: {
+      imageSrc: './assets/images/player2/Jump.png',
+      maxFrame: 2
+    },
+    fall: {
+      imageSrc: './assets/images/player2/Fall.png',
+      maxFrame: 2
+    },
+    attack1: {
+      imageSrc: './assets/images/player2/Attack1.png',
+      maxFrame: 4
+    },
+  }
   
 });
 
@@ -118,7 +146,7 @@ function animate() {
   background.update();
   shop.update();
   player.update();
-  //enemy.update();
+  enemy.update();
 
   player.velocity.x = 0;
   enemy.velocity.x = 0;
@@ -134,7 +162,7 @@ function animate() {
     player.switchSprite('idle');
   };
 
-  // jumping
+  // player jumping
   if (player.velocity.y < 0) {
     player.switchSprite('jump');
   } else if (player.velocity.y > 0) {
@@ -144,9 +172,20 @@ function animate() {
   // enemy movement
   if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
     enemy.velocity.x = -5;
+    enemy.switchSprite('run');
   } else if (keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight") {
     enemy.velocity.x = 5;
+    enemy.switchSprite('run');
+  } else {
+    enemy.switchSprite('idle');
   };
+
+  // enemy jumping
+  if (enemy.velocity.y < 0) {
+    enemy.switchSprite('jump');
+  } else if (enemy.velocity.y > 0) {
+    enemy.switchSprite('fall');
+  }
 
   // collision detection
   if (
@@ -199,7 +238,7 @@ window.addEventListener('keydown', (e) => {
       enemy.velocity.y = -20;
       break;
     case "ArrowDown":
-      enemy.isAttacking = true;
+      enemy.attack();
       break;
   }
 });
