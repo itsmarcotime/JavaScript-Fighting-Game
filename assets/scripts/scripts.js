@@ -66,6 +66,10 @@ const player = new Fighter({
       imageSrc: './assets/images/player1/Attack1.png',
       maxFrame: 6
     },
+    takeHit: {
+      imageSrc: './assets/images/player1/Take hit.png',
+      maxFrame: 4
+    }
   },
   attackBox: {
     offset: {
@@ -118,6 +122,10 @@ const enemy = new Fighter({
       imageSrc: './assets/images/player2/Attack1.png',
       maxFrame: 4
     },
+    takeHit: {
+      imageSrc: './assets/images/player2/Take hit.png',
+      maxFrame: 3
+    }
   },
   attackBox: {
     offset: {
@@ -203,11 +211,12 @@ function animate() {
     enemy.switchSprite('fall');
   }
 
-  // collision detection
+  // player1 hits player 2
   if (collisionDetection({ rectangle1: player, rectangle2: enemy }) && player.isAttacking && 
       player.currentFrame === 4 ) {
+    enemy.takeHit();
     player.isAttacking = false;
-    enemy.health -= 20;
+    
     document.querySelector('#enemyHealth').style.width = enemy.health + "%";
   };
   // player1 misses 
@@ -215,10 +224,12 @@ function animate() {
     player.isAttacking = false;
   }
 
+  // player2 hits player1
   if (collisionDetection({ rectangle1: enemy, rectangle2: player }) && enemy.isAttacking && 
       enemy.currentFrame === 2) {
+    player.takeHit();
     enemy.isAttacking = false;
-    player.health -= 20;
+    
     document.querySelector('#playerHealth').style.width = player.health + "%";
   };
   // player2 misses 
