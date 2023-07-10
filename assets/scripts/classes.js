@@ -68,6 +68,7 @@ class Fighter extends Sprite {
     this.framesElapsed = 0;
     this.framesHold = 5;
     this.sprites = sprites;
+    this.death = false;
 
     for (const sprite in this.sprites) {
       sprites[sprite].image = new Image();
@@ -77,7 +78,9 @@ class Fighter extends Sprite {
 
   update() {
     this.draw();
-    this.animateFrames();
+    if (!this.death) {
+      this.animateFrames();
+    };
 
     // attack boxes
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
@@ -103,11 +106,24 @@ class Fighter extends Sprite {
     this.isAttacking = true;
   };
   takeHit() {
-    this.switchSprite('takeHit');
     this.health -= 20;
+
+    if (this.health <= 0) {
+      this.switchSprite('death');
+    } else {
+      this.switchSprite('takeHit');
+    };
   }
 
   switchSprite(sprite) {
+    // override all animations with death
+    if (this.image === this.sprites.death.image) {
+      if (this.currentFrame === this.sprites.death.maxFrame - 1) {
+        this.death = true;
+      }
+      return;
+    };
+
     // this overrides all animations with attack1
     if (this.image === this.sprites.attack1.image && this.currentFrame < this.sprites.attack1.maxFrame - 1) {
       return;
@@ -161,6 +177,13 @@ class Fighter extends Sprite {
           this.currentFrame = 0;
         }
         break;
+      case "death":
+          if (this.image !== this.sprites.death.image) {
+            this.image = this.sprites.death.image;
+            this.maxFrame = this.sprites.death.maxFrame;
+            this.currentFrame = 0;
+          }
+          break;
     }
   };
 };
