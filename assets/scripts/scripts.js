@@ -69,6 +69,10 @@ const player = new Fighter({
     takeHit: {
       imageSrc: './assets/images/player1/Take hit.png',
       maxFrame: 4
+    },
+    death: {
+      imageSrc: './assets/images/player1/Death.png',
+      maxFrame: 6
     }
   },
   attackBox: {
