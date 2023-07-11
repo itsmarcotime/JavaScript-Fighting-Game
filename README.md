@@ -34,7 +34,7 @@ This version of the application was built using HTML, CSS, JavaScript!
 Contact me if you would like to contribute!
 
 ## Usage
-Live website: 
+Live website: https://itsmarcotime.github.io/JavaScript-Fighting-Game/ 
 
 ## Questions
 Questions? <br /> 
